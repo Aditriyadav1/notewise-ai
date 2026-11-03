@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteWise AI - Your AI-Powered Study Companion</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lavender: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        },
+                        navy: {
+                            800: '#1e1b4b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-white text-navy-900 antialiased selection:bg-lavender-200 selection:text-lavender-700">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="switchView('landing')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-lavender-600 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-lavender-500/20">
+                        N
+                    </div>
+                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-navy-900 to-lavender-700 bg-clip-text text-transparent">NoteWise AI</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                    <a href="#features" class="hover:text-lavender-600 transition">Features</a>
+                    <a href="#how-it-works" class="hover:text-lavender-600 transition">How It Works</a>
+                    <a href="#about" class="hover:text-lavender-600 transition">About Us</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openAuthModal('login')" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-lavender-600 transition">Login</button>
+                    <button onclick="openAuthModal('signup')" class="px-4 py-2 text-sm font-medium text-white bg-lavender-600 hover:bg-lavender-700 rounded-xl shadow-sm shadow-lavender-500/30 transition">Sign Up Free</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN VIEWS CONTAINER -->
+    <div id="app-container">
+        <!-- LANDING PAGE VIEW -->
+        <div id="landing-view">
+            <!-- Hero Section -->
+            <section class="relative pt-20 pb-28 overflow-hidden bg-gradient-to-b from-lavender-50/50 to-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lavender-100 text-lavender-700 text-xs font-semibold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-lavender-600 animate-pulse"></span>
+                        Powered by Advanced AI Engine
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold text-navy-900 tracking-tight max-w-3xl mx-auto leading-tight">
+                        Study Smarter, <span class="bg-gradient-to-r from-lavender-600 to-indigo-600 bg-clip-text text-transparent">Not Harder.</span>
+                    </h1>
+                    <p class="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                        Your personal AI-powered study companion. Transform lengthy study materials into smart notes, summaries, flashcards and quizzes instantly.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="openAuthModal('signup')" class="px-8 py-4 text-base font-semibold text-white bg-lavender-600 hover:bg-lavender-700 rounded-2xl shadow-lg shadow-lavender-600/30 transition transform hover:-translate-y-0.5">
+                            Get Started
+                        </button>
+                        <a href="#features" class="px-8 py-4 text-base font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 rounded-2xl shadow-sm transition">
+                            Explore Features
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">Everything you need to ace your exams</h2>
+                        <p class="mt-4 text-gray-600">Powerful AI tools designed specifically for college students and learners.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">📝</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">AI Notes Generator</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Generate concise, structured, and easy-to-understand notes from any topic or document in seconds.</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">📂</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">PDF Summarizer</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Convert lengthy textbooks and research PDFs into clean, short, bulleted summaries instantly.</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">⚡</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">Flashcard Generator</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Create active-recall question-and-answer flashcards automatically to lock concepts into memory.</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">🎯</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">Quiz Generator</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Generate custom multiple-choice practice quizzes with instant feedback to test your preparedness.</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">📖</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">Exam Answer Generator</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Create structured, step-by-step, exam-oriented descriptive answers tailored for university scoring.</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-lavender-50/40 border border-lavender-100/60 hover:shadow-xl hover:shadow-lavender-500/5 transition duration-300">
+                            <div class="w-12 h-12 rounded-2xl bg-lavender-600 text-white flex items-center justify-center font-bold text-lg mb-6">📅</div>
+                            <h3 class="text-xl font-bold text-navy-900 mb-2">Smart Revision Planner</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Automatically organize daily and weekly study schedules based on your syllabus difficulty.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section id="how-it-works" class="py-24 bg-gray-50/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">How NoteWise AI Works</h2>
+                        <p class="mt-4 text-gray-600">Four simple steps to transform your learning experience.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="text-center p-6">
+                            <div class="w-14 h-14 mx-auto rounded-2xl bg-lavender-100 text-lavender-700 flex items-center justify-center font-bold text-xl mb-6 shadow-sm">1</div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-2">Upload Material</h3>
+                            <p class="text-sm text-gray-600">Upload your study notes, PDFs, or paste text directly.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-14 h-14 mx-auto rounded-2xl bg-lavender-100 text-lavender-700 flex items-center justify-center font-bold text-xl mb-6 shadow-sm">2</div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-2">AI Analysis</h3>
+                            <p class="text-sm text-gray-600">Let our advanced AI engine analyze key concepts and structure.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-14 h-14 mx-auto rounded-2xl bg-lavender-100 text-lavender-700 flex items-center justify-center font-bold text-xl mb-6 shadow-sm">3</div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-2">Generate Tools</h3>
+                            <p class="text-sm text-gray-600">Instantly generate notes, flashcards, or practice quizzes.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-14 h-14 mx-auto rounded-2xl bg-lavender-100 text-lavender-700 flex items-center justify-center font-bold text-xl mb-6 shadow-sm">4</div>
+                            <h3 class="font-bold text-navy-900 text-lg mb-2">Revise & Excel</h3>
+                            <p class="text-sm text-gray-600">Study efficiently and track your progress to top exams.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us Section -->
+            <section id="about" class="py-24 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl mb-6">Making Learning Smarter for Everyone.</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        NoteWise AI was built to solve the overwhelm of modern college education. By harnessing state-of-the-art artificial intelligence, we help students save hours of manual study time, grasp complex concepts seamlessly, and prepare with absolute confidence.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="bg-navy-900 text-white py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-lavender-600 flex items-center justify-center font-bold text-white">N</div>
+                        <span class="font-bold text-lg">NoteWise AI</span>
+                    </div>
+                    <div class="text-sm text-gray-400">© 2026 NoteWise AI. All rights reserved. Built with passion for better learning.</div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- STUDENT DASHBOARD VIEW (Hidden by default until logged in) -->
+        <div id="dashboard-view" class="hidden min-h-screen bg-gray-50 flex">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-white border-r border-gray-100 flex flex-col">
+                <div class="h-16 flex items-center px-6 border-b border-gray-100">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-lavender-600 text-white flex items-center justify-center font-bold">N</div>
+                        <span class="font-bold text-navy-900">NoteWise Dashboard</span>
+                    </div>
+                </div>
+                <div class="p-4 space-y-1 flex-1">
+                    <button onclick="switchTab('overview')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium bg-lavender-50 text-lavender-700 transition">📊 <span>Dashboard</span></button>
+                    <button onclick="switchTab('upload')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">📁 <span>Upload Documents</span></button>
+                    <button onclick="switchTab('notes')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">📝 <span>AI Notes</span></button>
+                    <button onclick="switchTab('flashcards')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">⚡ <span>Flashcards</span></button>
+                    <button onclick="switchTab('quiz')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">🎯 <span>Quiz Generator</span></button>
+                    <button onclick="switchTab('answers')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">📖 <span>Exam Answers</span></button>
+                    <button onclick="switchTab('planner')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">📅 <span>Revision Planner</span></button>
+                    <button onclick="switchTab('library')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 transition">📚 <span>My Library</span></button>
+                </div>
+                <div class="p-4 border-t border-gray-100">
+                    <button onclick="logoutUser()" class="w-full px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 rounded-xl transition">🚪 Log Out</button>
+                </div>
+            </aside>
+
+            <!-- Main Dashboard Content -->
+            <main class="flex-1 p-8 overflow-y-auto">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 id="user-welcome" class="text-2xl font-bold text-navy-900">Welcome back, Student!</h1>
+                        <p class="text-sm text-gray-500">Here is your AI learning hub overview for today.</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span id="user-email-badge" class="px-3 py-1.5 bg-lavender-100 text-lavender-700 rounded-xl text-xs font-semibold"></span>
+                    </div>
+                </div>
+
+                <!-- Tab Contents -->
+                <div id="tab-content" class="space-y-6">
+                    <!-- Default Overview Tab -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="text-sm text-gray-500 font-medium">Notes Generated</div>
+                            <div class="text-3xl font-bold text-navy-900 mt-2">12</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="text-sm text-gray-500 font-medium">Active Flashcards</div>
+                            <div class="text-3xl font-bold text-navy-900 mt-2">48</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                            <div class="text-sm text-gray-500 font-medium">Quizzes Completed</div>
+                            <div class="text-3xl font-bold text-navy-900 mt-2">6</div>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="text-lg font-bold text-navy-900 mb-4">Quick Document Upload</h3>
+                        <div class="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center hover:border-lavender-500 transition cursor-pointer">
+                            <div class="text-4xl mb-2">📁</div>
+                            <p class="font-medium text-navy-900">Drag & drop your study PDFs or notes here</p>
+                            <p class="text-xs text-gray-500 mt-1">Supports PDF, TXT, DOCX up to 25MB</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            <h3 id="modal-title" class="text-2xl font-bold text-navy-900 mb-2">Welcome Back</h3>
+            <p id="modal-subtitle" class="text-sm text-gray-500 mb-6">Enter your credentials to access NoteWise AI.</p>
+            
+            <div id="auth-error" class="hidden mb-4 p-3 bg-red-50 text-red-600 text-xs rounded-xl"></div>
+
+            <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Email Address</label>
+                    <input type="email" id="auth-email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-lavender-600 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Password</label>
+                    <input type="password" id="auth-password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-lavender-600 text-sm">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full py-3.5 bg-lavender-600 hover:bg-lavender-700 text-white font-semibold rounded-xl shadow-md transition">Login</button>
+            </form>
+
+            <div class="mt-6 text-center text-sm text-gray-600">
+                <span id="auth-switch-text">Don't have an account?</span>
+                <button onclick="toggleAuthMode()" id="auth-switch-btn" class="text-lavender-600 font-semibold ml-1 hover:underline">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE SDK & AUTH LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_iOtoibysJGuwFQnzoxJ2yYEWxc3xQEU",
+            authDomain: "notewise-ai-9636b.firebaseapp.com",
+            projectId: "notewise-ai-9636b",
+            storageBucket: "notewise-ai-9636b.firebasestorage.app",
+            messagingSenderId: "982718742032",
+            appId: "1:982718742032:web:6a45c3b80ea9df03dd9495"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        let isSignUpMode = false;
+
+        window.openAuthModal = function(mode) {
+            isSignUpMode = (mode === 'signup');
+            updateModalUI();
+            document.getElementById('auth-modal').classList.remove('hidden');
+            document.getElementById('auth-error').classList.add('hidden');
+        }
+
+        window.closeAuthModal = function() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        window.toggleAuthMode = function() {
+            isSignUpMode = !isSignUpMode;
+            updateModalUI();
+        }
+
+        function updateModalUI() {
+            const title = document.getElementById('modal-title');
+            const subtitle = document.getElementById('modal-subtitle');
+            const btn = document.getElementById('auth-submit-btn');
+            const switchText = document.getElementById('auth-switch-text');
+            const switchBtn = document.getElementById('auth-switch-btn');
+
+            if (isSignUpMode) {
+                title.innerText = "Create Account";
+                subtitle.innerText = "Sign up to start generating AI study notes.";
+                btn.innerText = "Sign Up Free";
+                switchText.innerText = "Already have an account?";
+                switchBtn.innerText = "Login";
+            } else {
+                title.innerText = "Welcome Back";
+                subtitle.innerText = "Enter your credentials to access NoteWise AI.";
+                btn.innerText = "Login";
+                switchText.innerText = "Don't have an account?";
+                switchBtn.innerText = "Sign up";
+            }
+        }
+
+        window.handleAuthSubmit = async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const errBox = document.getElementById('auth-error');
+            errBox.classList.add('hidden');
+
+            try {
+                if (isSignUpMode) {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+                closeAuthModal();
+            } catch (error) {
+                errBox.innerText = error.message;
+                errBox.classList.remove('hidden');
+            }
+        }
+
+        window.logoutUser = function() {
+            signOut(auth).then(() => {
+                switchView('landing');
+            });
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('landing-view').classList.add('hidden');
+                document.getElementById('dashboard-view').classList.remove('hidden');
+                document.getElementById('user-email-badge').innerText = user.email;
+                document.getElementById('user-welcome').innerText = `Welcome back, ${user.email.split('@')[0]}!`;
+            } else {
+                document.getElementById('dashboard-view').classList.add('hidden');
+                document.getElementById('landing-view').classList.remove('hidden');
+            }
+        });
+
+        window.switchView = function(view) {
+            if(view === 'landing') {
+                document.getElementById('dashboard-view').classList.add('hidden');
+                document.getElementById('landing-view').classList.remove('hidden');
+            }
+        }
+
+        window.switchTab = function(tab) {
+            const content = document.getElementById('tab-content');
+            if(tab === 'overview') {
+                content.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm"><div class="text-sm text-gray-500 font-medium">Notes Generated</div><div class="text-3xl font-bold text-navy-900 mt-2">12</div></div>
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm"><div class="text-sm text-gray-500 font-medium">Active Flashcards</div><div class="text-3xl font-bold text-navy-900 mt-2">48</div></div>
+                        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm"><div class="text-sm text-gray-500 font-medium">Quizzes Completed</div><div class="text-3xl font-bold text-navy-900 mt-2">6</div></div>
+                    </div>
+                    <div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                        <h3 class="text-lg font-bold text-navy-900 mb-4">Quick Document Upload</h3>
+                        <div class="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center hover:border-lavender-500 transition cursor-pointer">
+                            <div class="text-4xl mb-2">📁</div>
+                            <p class="font-medium text-navy-900">Drag & drop your study PDFs or notes here</p>
+                        </div>
+                    </div>`;
+            } else if(tab === 'upload') {
+                content.innerHTML = `<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm"><h3 class="text-xl font-bold mb-4">Upload Study Documents</h3><input type="file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-lavender-50 file:text-lavender-700 hover:file:bg-lavender-100"/></div>`;
+            } else if(tab === 'notes') {
+                content.innerHTML = `<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm"><h3 class="text-xl font-bold mb-2">AI Notes Generator</h3><p class="text-gray-500 text-sm mb-4">Enter your topic to generate smart revision notes.</p><input type="text" placeholder="e.g. Kinematics of Machines" class="w-full p-3 border rounded-xl mb-4"/><button class="px-6 py-2.5 bg-lavender-600 text-white rounded-xl font-medium">Generate Notes</button></div>`;
+            } else {
+                content.innerHTML = `<div class="p-8 bg-white rounded-2xl border border-gray-100 shadow-sm"><h3 class="text-xl font-bold mb-2 capitalize">${tab} Workspace</h3><p class="text-gray-500">Feature module ready for study session.</p></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
